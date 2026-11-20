@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #04060f;
+  --panel: rgba(148, 163, 184, 0.06);
+  --line: rgba(148, 163, 184, 0.14);
+  --blue: #3fa9ff;
+  --violet: #a06bff;
+  --cyan: #22d3ee;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background-color: var(--bg);
+  color: #e6ecff;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background-image:
+    radial-gradient(1100px 620px at 12% -8%, rgba(63, 169, 255, 0.16), transparent 60%),
+    radial-gradient(900px 520px at 92% 4%, rgba(160, 107, 255, 0.16), transparent 55%),
+    radial-gradient(800px 800px at 50% 110%, rgba(34, 211, 238, 0.07), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Prevent iOS zoom-on-focus without shrinking the design. */
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+::selection {
+  background: rgba(63, 169, 255, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.22);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.38);
+  background-clip: content-box;
+}
+
+@layer components {
+  .glass {
+    @apply rounded-2xl border border-white/10 bg-white/[0.035] backdrop-blur-xl;
+    box-shadow: 0 24px 70px -34px rgba(2, 6, 23, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  }
+
+  .glass-hover {
+    @apply transition duration-300 hover:border-white/20 hover:bg-white/[0.06];
+  }
+
+  .panel {
+    @apply glass p-5 sm:p-6;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-ink-950/70 px-3.5 py-3 text-[15px] text-slate-100
+      placeholder:text-slate-500 outline-none transition
+      focus:border-neon-blue/60 focus:ring-2 focus:ring-neon-blue/20;
+  }
+
+  .textarea {
+    @apply input min-h-[110px] resize-y leading-relaxed;
+  }
+
+  .select {
+    @apply input appearance-none bg-[right_0.9rem_center] bg-no-repeat pr-10;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1.5 6 6.5l5-5' stroke='%2394a3b8' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  .btn {
+    @apply inline-flex select-none items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold
+      transition duration-200 disabled:cursor-not-allowed disabled:opacity-45 focus:outline-none
+      focus-visible:ring-2 focus-visible:ring-neon-blue/50;
+  }
+
+  .btn-primary {
+    @apply btn relative overflow-hidden text-white;
+    background-image: linear-gradient(120deg, #2f8bff 0%, #7c5cff 52%, #b06bff 100%);
+    box-shadow: 0 14px 40px -16px rgba(79, 124, 255, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+  .btn-primary:hover:not(:disabled) {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    @apply btn border border-white/12 bg-white/[0.05] text-slate-100 hover:border-white/25 hover:bg-white/[0.09];
+  }
+
+  .btn-ghost {
+    @apply btn text-slate-300 hover:bg-white/[0.06] hover:text-white;
+  }
+
+  .btn-danger {
+    @apply btn border border-rose-400/25 bg-rose-500/10 text-rose-200 hover:bg-rose-500/20;
+  }
+
+  .btn-sm {
+    @apply rounded-lg px-3 py-2 text-xs;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.045] px-3 py-1
+      text-[11px] font-medium text-slate-300;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13.5px] font-medium text-slate-400
+      transition duration-200 hover:bg-white/[0.06] hover:text-white;
+  }
+
+  .nav-item-active {
+    @apply text-white;
+    background: linear-gradient(100deg, rgba(63, 169, 255, 0.18), rgba(160, 107, 255, 0.14));
+    box-shadow: inset 0 0 0 1px rgba(120, 160, 255, 0.28), 0 12px 30px -18px rgba(63, 169, 255, 0.9);
+  }
+
+  .section-title {
+    @apply font-display text-xl font-semibold tracking-tight text-white sm:text-2xl;
+  }
+
+  .muted {
+    @apply text-sm leading-relaxed text-slate-400;
+  }
+
+  .divider {
+    @apply h-px w-full bg-white/10;
+  }
+
+  .kbd {
+    @apply rounded-md border border-white/15 bg-white/[0.06] px-1.5 py-0.5 font-mono text-[10px] text-slate-300;
+  }
+
+  .progress-track {
+    @apply h-1.5 w-full overflow-hidden rounded-full bg-white/10;
+  }
+
+  .progress-bar {
+    @apply h-full rounded-full transition-[width] duration-500;
+    background-image: linear-gradient(90deg, #22d3ee, #3fa9ff 45%, #a06bff);
+  }
+
+  .pb-safe {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
+
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background-image: linear-gradient(100deg, #dbeafe 0%, #7dd3fc 30%, #a78bfa 62%, #f0abfc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-blue {
+    background-image: linear-gradient(100deg, #60d5ff, #8b7bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(148, 163, 184, 0.25) transparent;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .glass-sheen {
+    position: relative;
+  }
+  .glass-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(130deg, rgba(255, 255, 255, 0.09), transparent 38%, transparent 70%, rgba(160, 107, 255, 0.09));
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

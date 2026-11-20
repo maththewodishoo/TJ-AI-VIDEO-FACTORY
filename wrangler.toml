@@ -1,0 +1,11 @@
+name = "tj-ai-video-factory-api"
+main = "worker/index.ts"
+compatibility_date = "2025-04-01"
+
+# Never commit real keys. Set them with:
+#   wrangler secret put AGNES_API_KEY
+#   wrangler secret put APP_ACCESS_TOKEN
+#   wrangler secret put TTS_API_BASE / TTS_API_KEY (optional)
+[vars]
+AGNES_BASE_URL = "https://apihub.agnes-ai.com"
+AGNES_TEXT_MODEL = "agnes-3.0-flash"

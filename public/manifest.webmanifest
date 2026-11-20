@@ -1,0 +1,20 @@
+{
+  "name": "TJ AI VIDEO FACTORY",
+  "short_name": "TJ Factory",
+  "description": "One prompt, complete video, zero mandatory cost. Turn a single idea into a scripted, narrated, captioned MP4.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#04060f",
+  "theme_color": "#04060f",
+  "categories": ["video", "productivity", "entertainment"],
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
